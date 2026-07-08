@@ -46,7 +46,7 @@ ${historyContext}
   `;
 
   // 4. Generate SQL
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", systemInstruction });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", systemInstruction });
   const result = await model.generateContent(prompt);
   let sqlQuery = result.response.text().trim();
   
@@ -68,7 +68,7 @@ ${historyContext}
   const executionTime = Date.now() - executionStart;
 
   // 6. Generate Insights based on data
-  const insightsModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const insightsModel = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const insightPrompt = `
 You are a business intelligence expert. Analyze this query and result set.
 Query: ${sqlQuery}

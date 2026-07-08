@@ -107,7 +107,7 @@ model Settings {
   userId    String   @unique
   theme     String   @default("system")
   language  String   @default("en")
-  aiModel   String   @default("gemini-1.5-pro")
+  aiModel   String   @default("gemini-2.0-flash")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
