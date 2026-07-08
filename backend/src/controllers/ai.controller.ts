@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { processUserQuery } from '../services/ai.service';
-import { prisma } from '../server';
+import { prisma } from '../lib/prisma';
 import logger from '../utils/logger';
 
 export const askAI = async (req: Request, res: Response): Promise<void> => {

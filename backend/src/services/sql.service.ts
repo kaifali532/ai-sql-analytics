@@ -1,4 +1,4 @@
-import { prisma } from '../server';
+import { prisma } from '../lib/prisma';
 import logger from '../utils/logger';
 
 export const executeReadOnlyQuery = async (sqlQuery: string): Promise<any[]> => {

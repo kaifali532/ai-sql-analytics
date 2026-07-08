@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { prisma } from '../server';
+import { prisma } from '../lib/prisma';
 import fs from 'fs';
 import { parseCSVAndCreateSchema } from '../services/dataset.service';
 import logger from '../utils/logger';

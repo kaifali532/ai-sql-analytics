@@ -1,7 +1,7 @@
 import fs from 'fs';
 import csvParser from 'csv-parser';
 import * as xlsx from 'xlsx';
-import { prisma } from '../server';
+import { prisma } from '../lib/prisma';
 import { v4 as uuidv4 } from 'uuid';
 import logger from '../utils/logger';
 
