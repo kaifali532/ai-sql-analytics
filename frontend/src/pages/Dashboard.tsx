@@ -71,7 +71,7 @@ const Dashboard = () => {
         <div className="glass-card p-6">
           <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Rows Imported</h3>
           <p className="text-3xl font-bold text-slate-900 dark:text-white mt-2">
-            {datasets?.reduce((acc, curr) => acc + curr.rowCount, 0).toLocaleString() || 0}
+            {(datasets?.reduce((acc, curr) => acc + curr.rowCount, 0) || 0).toLocaleString()}
           </p>
         </div>
         <div className="glass-card p-6">
