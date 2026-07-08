@@ -2,7 +2,7 @@ import fs from 'fs';
 import csvParser from 'csv-parser';
 import * as xlsx from 'xlsx';
 import { prisma } from '../lib/prisma';
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 import logger from '../utils/logger';
 
 export const parseCSVAndCreateSchema = async (filePath: string, originalName: string, userId: string, fileSize: number, mimeType: string) => {
@@ -22,7 +22,7 @@ export const parseCSVAndCreateSchema = async (filePath: string, originalName: st
 
   // Schema Detection & Statistics
   const columns = detectSchema(rows);
-  const tableName = `table_${uuidv4().replace(/-/g, '_')}`;
+  const tableName = `table_${crypto.randomUUID().replace(/-/g, '_')}`;
 
   // 1. Create dataset record (PENDING)
   const dataset = await prisma.dataset.create({
