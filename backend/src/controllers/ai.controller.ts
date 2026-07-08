@@ -23,7 +23,16 @@ export const askAI = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json(result);
   } catch (error: any) {
     logger.error('Error in askAI:', error);
-    res.status(500).json({ error: error.message || 'Internal server error' });
+
+    const msg = error.message || '';
+    if (msg.includes('429') || msg.includes('quota') || msg.includes('Too Many Requests')) {
+      res.status(429).json({
+        error: 'AI quota limit reached. The free tier has been exhausted. Please wait a minute and try again, or upgrade your API key to a paid plan.',
+      });
+      return;
+    }
+
+    res.status(500).json({ error: msg || 'Internal server error' });
   }
 };
 
