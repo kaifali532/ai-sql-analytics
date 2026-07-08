@@ -28,10 +28,15 @@ const Login = () => {
     try {
       setError('');
       const response = await api.post('/auth/login', data);
+      
+      if (!response.data || !response.data.token || !response.data.user) {
+        throw new Error('Invalid response from server. Please try again.');
+      }
+      
       login(response.data.user, response.data.token);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to login');
+      setError(err.response?.data?.error || err.message || 'Failed to login');
     }
   };
 
