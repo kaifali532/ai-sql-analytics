@@ -36,7 +36,16 @@ const Login = () => {
       login(response.data.user, response.data.token);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || err.message || 'Failed to login');
+      const errData = err.response?.data;
+      let errorMessage = 'Failed to login';
+      if (errData) {
+        if (typeof errData.error === 'string') errorMessage = errData.error;
+        else if (typeof errData.message === 'string') errorMessage = errData.message;
+        else errorMessage = JSON.stringify(errData);
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      setError(errorMessage);
     }
   };
 
