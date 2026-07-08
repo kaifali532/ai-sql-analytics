@@ -1,42 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3b82f6;
-  --color-secondary: #10b981;
-  --color-background-dark: #0f172a;
-  --color-surface-dark: #1e293b;
-  --color-text-dark: #f8fafc;
-  --color-text-muted-dark: #94a3b8;
+  --color-primary: #8b5cf6; /* Soft Purple */
+  --color-primary-hover: #7c3aed;
+  --color-secondary: #4f46e5; /* Deep Indigo */
+  
+  /* Light Theme - Apple Premium */
+  --color-bg-base: #faf9f6; /* Cream White */
+  --color-bg-surface: #ffffff; /* Pure White */
+  --color-bg-glass: rgba(255, 255, 255, 0.6);
+  --color-text-base: #1c1c1e; /* Graphite */
+  --color-text-muted: #8e8e93; /* Slate */
+  --color-border-subtle: rgba(0, 0, 0, 0.05);
+  
+  /* Dark Theme - Luxury Graphite (Optional fallback) */
+  --color-bg-dark: #121214;
+  --color-surface-dark: #1c1c1e;
+  --color-text-dark: #f5f5f7;
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  --font-sans: "SF Pro Display", "Inter", "Geist", system-ui, sans-serif;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-bg-base text-text-base font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  letter-spacing: -0.015em;
 }
 
 .dark body {
-  @apply bg-background-dark text-text-dark;
+  @apply bg-bg-dark text-text-dark;
 }
 
+/* Premium Apple-style Cards */
 .glass-card {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl;
+  @apply bg-bg-glass backdrop-blur-2xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[32px];
 }
 
 .dark .glass-card {
-  @apply bg-surface-dark/70 backdrop-blur-md border border-slate-700/50 shadow-lg rounded-2xl;
+  @apply bg-surface-dark/60 backdrop-blur-2xl border border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.2)] rounded-[32px];
+}
+
+/* Typography utilities */
+.text-hero {
+  @apply text-5xl md:text-7xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-base to-text-muted;
+}
+.dark .text-hero {
+  @apply bg-gradient-to-br from-white to-white/60;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  @apply bg-black/10 rounded-full border-[3px] border-solid border-bg-base;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #475569;
+  @apply bg-white/20 border-bg-dark;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-black/20;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-white/30;
 }
