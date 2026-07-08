@@ -20,9 +20,14 @@ const Login = () => {
   const { login } = useAuthStore();
   const [error, setError] = useState('');
   
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useRHForm<LoginForm>({
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useRHForm<LoginForm>({
     resolver: zodResolver(loginSchema),
   });
+
+  const fillDemo = () => {
+    setValue('email', 'demo@apple.com');
+    setValue('password', 'password123');
+  };
 
   const onSubmit = async (data: LoginForm) => {
     try {
@@ -94,7 +99,20 @@ const Login = () => {
         </button>
       </form>
 
-      <p className="text-center mt-10 text-sm text-text-muted font-medium">
+      {/* Demo Credentials Banner */}
+      <div
+        onClick={fillDemo}
+        className="mt-6 p-4 rounded-2xl border border-primary/20 bg-primary/5 cursor-pointer hover:bg-primary/10 transition-all duration-300 group"
+      >
+        <p className="text-xs text-center text-text-muted mb-1.5 font-medium">Try the demo — click to auto-fill</p>
+        <div className="flex items-center justify-center gap-6 text-sm">
+          <span className="text-text-base font-mono">demo@apple.com</span>
+          <span className="text-primary/40">|</span>
+          <span className="text-text-base font-mono">password123</span>
+        </div>
+      </div>
+
+      <p className="text-center mt-8 text-sm text-text-muted font-medium">
         Don't have an account?{' '}
         <Link to="/register" className="text-primary hover:text-primary-hover hover:underline underline-offset-4 transition-colors">
           Create one
