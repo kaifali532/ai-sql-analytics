@@ -48,8 +48,9 @@ const Dashboard = () => {
     );
   }
 
-  const totalRows = datasets?.reduce((acc, curr) => acc + curr.rowCount, 0) || 0;
-  const totalStorage = ((datasets?.reduce((acc, curr) => acc + curr.sizeBytes, 0) || 0) / (1024 * 1024)).toFixed(1);
+  const validDatasets = Array.isArray(datasets) ? datasets : [];
+  const totalRows = validDatasets.reduce((acc, curr) => acc + (curr.rowCount || 0), 0);
+  const totalStorage = (validDatasets.reduce((acc, curr) => acc + (curr.sizeBytes || 0), 0) / (1024 * 1024)).toFixed(1);
 
   return (
     <div className="space-y-12 pb-10">
@@ -107,7 +108,7 @@ const Dashboard = () => {
             <div>
               <h3 className="text-sm font-medium text-text-muted mb-1 uppercase tracking-wider">Total Datasets</h3>
               <div className="text-5xl font-semibold tracking-tight text-text-base flex items-baseline gap-2">
-                {datasets?.length || 0}
+                {validDatasets.length}
               </div>
             </div>
           </div>
@@ -165,7 +166,7 @@ const Dashboard = () => {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
         <h2 className="text-2xl font-semibold text-text-base mb-8 tracking-tight">Your Datasets</h2>
         
-        {datasets?.length === 0 ? (
+        {validDatasets.length === 0 ? (
           <div className="glass-card p-16 text-center flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-black/[0.02] border border-black/[0.04] flex items-center justify-center mb-6">
               <FileSpreadsheet className="w-10 h-10 text-text-muted/50" />
@@ -181,7 +182,7 @@ const Dashboard = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {datasets?.map((dataset, index) => (
+            {validDatasets.map((dataset, index) => (
               <motion.div 
                 key={dataset.id}
                 initial={{ opacity: 0, y: 20 }}
