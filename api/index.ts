@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import app from '../backend/src/app';
 
 // Export the Express API for Vercel Serverless
