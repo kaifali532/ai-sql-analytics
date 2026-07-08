@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { Settings as SettingsIcon, Moon, Sun, Lock, Key, Globe, Loader2, Save } from 'lucide-react';
-import { useForm } from 'react-hook-form';
+import { Settings as SettingsIcon, Moon, Sun, Lock, Key, Loader2, Save } from 'lucide-react';
+
 
 const Settings = () => {
   const { user } = useAuthStore();

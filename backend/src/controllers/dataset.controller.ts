@@ -50,7 +50,7 @@ export const getDatasetById = async (req: Request, res: Response): Promise<void>
     const { id } = req.params;
     
     const dataset = await prisma.dataset.findFirst({
-      where: { id, userId },
+      where: { id: id as string, userId },
       include: { columns: true }
     });
 
@@ -70,7 +70,7 @@ export const deleteDataset = async (req: Request, res: Response): Promise<void> 
     const userId = (req as any).user.userId;
     const { id } = req.params;
 
-    const dataset = await prisma.dataset.findFirst({ where: { id, userId } });
+    const dataset = await prisma.dataset.findFirst({ where: { id: id as string, userId } });
     if (!dataset) {
       res.status(404).json({ error: 'Dataset not found' });
       return;
@@ -80,7 +80,7 @@ export const deleteDataset = async (req: Request, res: Response): Promise<void> 
     await prisma.$executeRawUnsafe(`DROP TABLE IF EXISTS "user_data"."${dataset.tableName}"`);
 
     // Delete record (cascades related columns, histories, etc)
-    await prisma.dataset.delete({ where: { id } });
+    await prisma.dataset.delete({ where: { id: id as string } });
 
     res.status(200).json({ message: 'Dataset deleted successfully' });
   } catch (error) {

@@ -33,7 +33,7 @@ export const getHistory = async (req: Request, res: Response): Promise<void> => 
     const { datasetId } = req.params;
 
     const chatHistory = await prisma.chatHistory.findMany({
-      where: { datasetId, userId },
+      where: { datasetId: datasetId as string, userId },
       orderBy: { createdAt: 'asc' }
     });
 

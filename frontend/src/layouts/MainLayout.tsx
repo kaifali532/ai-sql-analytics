@@ -1,6 +1,6 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
-import { LayoutDashboard, Upload, MessageSquare, Settings, LogOut, Database } from 'lucide-react';
+import { LayoutDashboard, Upload, Settings, LogOut, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MainLayout = () => {

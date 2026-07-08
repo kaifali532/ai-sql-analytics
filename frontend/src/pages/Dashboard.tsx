@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../lib/api';
-import { useDatasetStore, Dataset } from '../store/useDatasetStore';
+import { useDatasetStore, type Dataset } from '../store/useDatasetStore';
 import { useNavigate } from 'react-router-dom';
 import { Database, FileSpreadsheet, Trash2, Calendar, HardDrive, Loader2, Play } from 'lucide-react';
 import { format } from 'date-fns';

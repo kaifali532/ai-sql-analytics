@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import api from '../lib/api';
-import { Send, Bot, User, Database, Loader2, Code2, LineChart, ChevronDown, ChevronUp } from 'lucide-react';
+import { Send, Bot, User, Database, Code2, LineChart, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDatasetStore } from '../store/useDatasetStore';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+
 
 interface Message {
   id?: string;

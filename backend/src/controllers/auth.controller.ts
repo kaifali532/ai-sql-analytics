@@ -44,7 +44,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     res.status(201).json({ token, user: { id: user.id, email: user.email, name: user.name } });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      res.status(400).json({ error: error.errors });
+      res.status(400).json({ error: (error as z.ZodError<any>).errors });
     } else {
       res.status(500).json({ error: 'Internal server error' });
     }
@@ -74,7 +74,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({ token, user: { id: user.id, email: user.email, name: user.name } });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      res.status(400).json({ error: error.errors });
+      res.status(400).json({ error: (error as z.ZodError<any>).errors });
     } else {
       res.status(500).json({ error: 'Internal server error' });
     }

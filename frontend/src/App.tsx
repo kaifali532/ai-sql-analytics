@@ -16,7 +16,9 @@ import Settings from './pages/Settings';
 
 const queryClient = new QueryClient();
 
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+import React from 'react';
+
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const token = useAuthStore((state) => state.token);
   return token ? children : <Navigate to="/login" replace />;
 };
